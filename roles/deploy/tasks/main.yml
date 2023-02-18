@@ -15,14 +15,25 @@
     file:
         path: "{{ app_root_dir }}/{{ directory.path|default(directory) }}"
         state: "directory"
-        owner: "{{ directory.owner|default('root') }}"
-        group: "{{ directory.group|default('root') }}"
+        owner: "{{ directory.owner|default(app_user.uid) }}"
+        group: "{{ directory.group|default(app_user.group) }}"
         mode: "{{ directory.mode|default('0755') }}"
     loop_control:
         loop_var: "directory"
     with_items:
-        - ""
-        - "data"
+        -
+            path: ""
+            owner: root
+            group: root
+        -
+            path: "data"
+            owner: root
+            group: root
+        - "data/server"
+        - "data/configs"
+        - "data/logs"
+        - "data/media"
+        - "data/transcode_cache"
 
 -
     name: "Copy config"

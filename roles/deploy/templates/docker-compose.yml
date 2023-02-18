@@ -19,7 +19,12 @@ services:
         networks:
             - "traefik"
         restart: "unless-stopped"
-        volumes: []
+        volumes:
+            - ./data/server:/app/server
+            - ./data/configs:/app/configs
+            - ./data/logs:/app/logs
+            - ./data/media:/media
+            - ./data/transcode_cache:/transcode_cache
 
 networks:
     traefik:
