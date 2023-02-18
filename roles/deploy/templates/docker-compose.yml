@@ -4,6 +4,7 @@ services:
     server:
         image: "{{ app_compose_image }}"
         environment:
+            TZ: "America/Indiana/Indianapolis"
             PUID: "{{ app_user.uid }}"
             PGID: "{{ app_user.group }}"
             serverIP: "0.0.0.0"
