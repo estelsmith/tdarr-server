@@ -1,0 +1,25 @@
+version: "3.8"
+
+services:
+    server:
+        image: "{{ app_compose_image }}"
+        environment:
+            PUID: "{{ app_user.uid }}"
+            PGID: "{{ app_user.group }}"
+            serverIP: "0.0.0.0"
+            webUIPort: "8265"
+            serverPort: "8266"
+        labels:
+            traefik.enable: "true"
+            traefik.http.routers.{{ app_compose_traefik_service }}.entryPoints: "tls"
+            traefik.http.routers.{{ app_compose_traefik_service }}.rule: "Host(`{{ app_hostname }}`)"
+            traefik.http.routers.{{ app_compose_traefik_service }}.tls: "true"
+            traefik.http.services.{{ app_compose_traefik_service }}.loadbalancer.server.port: "8265"
+        networks:
+            - "traefik"
+        restart: "unless-stopped"
+        volumes: []
+
+networks:
+    traefik:
+        external: true
