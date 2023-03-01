@@ -1,5 +1,6 @@
 app_system_user: "tdarr"
 app_root_dir: "/srv/tdarr"
+app_skip_start: false
 
 app_compose_project_name: "tdarr"
 app_compose_image: "ghcr.io/haveagitgat/tdarr:2.00.19.1"
