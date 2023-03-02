@@ -49,7 +49,7 @@ services:
             - "./data/server:/app/server"
             - "./data/configs:/app/configs"
             - "./data/logs:/app/logs"
-            - "./data/juicefs:/app/juicefs:rw,slave"
+            - "./data/juicefs:/app/juicefs:rw,shared"
 
 networks:
     traefik:
