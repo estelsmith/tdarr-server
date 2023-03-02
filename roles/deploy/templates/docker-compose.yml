@@ -21,7 +21,8 @@ services:
             - "./juicefs:/app:ro"
             - "./secrets/juicefs:/run/secrets:ro"
             - "/etc/passwd:/etc/passwd:ro"
-            - "./data/shared:/mnt:rw,shared"
+            - "./data/juicefs-cache:/juicefs-cache"
+            - "./data/juicefs:/mnt:rw,shared"
 
     server:
         image: "{{ app_compose_image }}"
@@ -48,7 +49,7 @@ services:
             - "./data/server:/app/server"
             - "./data/configs:/app/configs"
             - "./data/logs:/app/logs"
-            - "./data/shared:/app/shared:rw,slave"
+            - "./data/juicefs:/app/juicefs:rw,slave"
 
 networks:
     traefik:

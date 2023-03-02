@@ -4,10 +4,8 @@ set -u
 set -e
 set -o pipefail
 
-mkdir -p /juice-cache
-
 exec juicefs mount \
-    --cache-dir "/juice-cache" \
+    --cache-dir "/juicefs-cache" \
     --cache-size "102400" \
     "${JUICEFS_REDIS_URL}" \
     /mnt

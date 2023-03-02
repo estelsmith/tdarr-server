@@ -32,7 +32,8 @@
         - "data/server"
         - "data/configs"
         - "data/logs"
-        - "data/shared"
+        - "data/juicefs"
+        - "data/juicefs-cache"
         -
             path: "juicefs"
             owner: "root"
