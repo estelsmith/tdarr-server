@@ -1,8 +1,33 @@
 version: "3.8"
 
 services:
+    juicefs:
+        image: "juicedata/mount:latest"
+        entrypoint: "/app/entrypoint.sh"
+        env_file: "./secrets/juicefs/env"
+        healthcheck:
+            test: ["CMD", "/app/healthcheck.sh"]
+            start_period: "15s"
+            interval: "15s"
+            timeout: "10s"
+            retries: 3
+        restart: "unless-stopped"
+        user: "{{ app_user.uid }}:{{ app_user.group }}"
+        cap_add:
+            - "SYS_ADMIN"
+        devices:
+            - "/dev/fuse"
+        volumes:
+            - "./juicefs:/app:ro"
+            - "./secrets/juicefs:/run/secrets:ro"
+            - "/etc/passwd:/etc/passwd:ro"
+            - "./data/shared:/mnt:rw,shared"
+
     server:
         image: "{{ app_compose_image }}"
+        depends_on:
+            juicefs:
+                condition: "service_healthy"
         environment:
             TZ: "America/Indiana/Indianapolis"
             PUID: "{{ app_user.uid }}"
@@ -20,11 +45,10 @@ services:
             - "traefik"
         restart: "unless-stopped"
         volumes:
-            - ./data/server:/app/server
-            - ./data/configs:/app/configs
-            - ./data/logs:/app/logs
-            - ./data/media:/media
-            - ./data/transcode_cache:/transcode_cache
+            - "./data/server:/app/server"
+            - "./data/configs:/app/configs"
+            - "./data/logs:/app/logs"
+            - "./data/shared:/app/shared:rw,slave"
 
 networks:
     traefik:
