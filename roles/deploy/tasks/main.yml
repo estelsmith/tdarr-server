@@ -61,10 +61,10 @@
         - "docker-compose.yml"
         -
             path: "juicefs/entrypoint.sh"
-            mode: "0750"
+            mode: "0755"
         -
             path: "juicefs/healthcheck.sh"
-            mode: "0750"
+            mode: "0755"
         -
             path: "secrets/juicefs/env"
             group: "{{ app_user.group }}"
