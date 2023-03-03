@@ -15,7 +15,7 @@ if [ "${MOUNT_USER_EXISTS}" = "0" ]; then
     adduser --system --home=/ --no-create-home --shell=/bin/bash --uid="${PUID}" --gid="${PGID}" "${MOUNT_USER}"
 fi
 
-juicefs mount \
+exec juicefs mount \
     --cache-dir "/juicefs-cache" \
     --cache-size "102400" \
     -o auto_unmount \
