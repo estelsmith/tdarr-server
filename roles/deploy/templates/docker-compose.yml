@@ -5,6 +5,9 @@ services:
         image: "juicedata/mount:latest"
         entrypoint: "/app/entrypoint.sh"
         env_file: "./secrets/juicefs/env"
+        environment:
+            PUID: "{{ app_user.uid }}"
+            PGID: "{{ app_user.group }}"
         healthcheck:
             test: ["CMD", "/app/healthcheck.sh"]
             start_period: "15s"
@@ -12,7 +15,6 @@ services:
             timeout: "10s"
             retries: 3
         restart: "unless-stopped"
-#        user: "{{ app_user.uid }}:{{ app_user.group }}"
         cap_add:
             - "SYS_ADMIN"
         devices:
@@ -20,7 +22,6 @@ services:
         volumes:
             - "./juicefs:/app:ro"
             - "./secrets/juicefs:/run/secrets:ro"
-            - "/etc/passwd:/etc/passwd:ro"
             - "./data/juicefs-cache:/juicefs-cache"
             - "./data/juicefs:/mnt:rw,shared"
 
