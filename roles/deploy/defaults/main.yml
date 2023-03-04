@@ -1,10 +1,12 @@
 app_system_user: "tdarr"
-app_root_dir: "/srv/tdarr"
+app_system_user_uid: ~
+app_system_user_gid: ~
+app_root_dir: "/srv/tdarr-server"
 app_skip_start: false
 
-app_compose_project_name: "tdarr"
+app_compose_project_name: "tdarr-server"
 app_compose_image: "ghcr.io/haveagitgat/tdarr:2.00.19.1"
-app_compose_traefik_service: "tdarr"
+app_compose_traefik_service: "tdarr-server"
 
 app_hostname: "tdarr.home.estelsmith.com"
 

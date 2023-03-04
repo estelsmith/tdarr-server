@@ -2,12 +2,14 @@
     name: "create system user"
     user:
         create_home: false
+        group: "{{ app_system_user_gid }}"
         home: "/"
         name: "{{ app_system_user }}"
         password: "!"
         shell: "/sbin/nologin"
         state: "present"
         system: true
+        uid: "{{ app_system_user_uid }}"
     register: "app_user"
 
 -
