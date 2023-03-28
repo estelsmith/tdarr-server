@@ -9,5 +9,3 @@ app_compose_image: "ghcr.io/haveagitgat/tdarr:2.00.19.1"
 app_compose_traefik_service: "tdarr-server"
 
 app_hostname: "tdarr.home.estelsmith.com"
-
-juicefs_redis_url: "undef('You must provide a JuiceFS Redis URL')"
