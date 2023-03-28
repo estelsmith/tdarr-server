@@ -1,4 +1,11 @@
 -
+    name: "Create system group"
+    group:
+        name: "{{ app_system_user }}"
+        gid: "{{ app_system_user_gid }}"
+        system: true
+
+-
     name: "create system user"
     user:
         create_home: false
