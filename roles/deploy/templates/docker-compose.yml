@@ -25,6 +25,7 @@ services:
             - "./data/server:/app/server"
             - "./data/configs:/app/configs"
             - "./data/logs:/app/logs"
+            - "{{ app_config_jellyfin_library_dir }}:/library"
 
 networks:
     traefik:

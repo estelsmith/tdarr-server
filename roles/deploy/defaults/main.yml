@@ -9,3 +9,4 @@ app_compose_image: "ghcr.io/haveagitgat/tdarr:2.00.19.1"
 app_compose_traefik_service: "tdarr-server"
 
 app_hostname: "tdarr.home.estelsmith.com"
+app_config_jellyfin_library_dir: "{{ undef('Provide path to jellyfin library directory') }}"
